@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class CreateEmployeeComponent implements OnInit {
 
   employee: Employee = new Employee();
+  private nextId = 1;
 
   constructor(private employeeService: EmployeeService, private router: Router) { }
 
