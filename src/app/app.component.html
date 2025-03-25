@@ -1,15 +1,24 @@
-<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #5A92B3;">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <i class="fa fa-briefcase"></i> Employee Management
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/employees" routerLinkActive="active">
+            <i class="fa fa-users"></i> Employee List
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="create-employee" routerLinkActive="active">
+            <i class="fa fa-plus-circle"></i> Add Employee
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-
-<h1 class="text-center">{{title}}</h1>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

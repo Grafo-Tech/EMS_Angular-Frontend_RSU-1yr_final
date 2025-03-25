@@ -1,13 +1,11 @@
-export class Employee {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+import { Position, Gender, Skills } from './enum';
 
-    constructor() {
-        this.id = 0; // Default value
-        this.firstName = '';
-        this.lastName = '';
-        this.email = '';
-    }
+export class Employee {
+  id!: number;
+  firstName!: string;
+  lastName!: string;
+  email!: string;
+  position!: Position;
+  gender!: Gender;
+  skills: Skills[] = []; // Can select multiple skills
 }

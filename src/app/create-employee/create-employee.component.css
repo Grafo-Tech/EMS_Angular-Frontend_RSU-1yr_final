@@ -1,0 +1,28 @@
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .form-check-inline {
+    margin-right: 15px; /* Adjust the space between elements */
+  }
+  
+  .custom-dropdown {
+    position: relative;
+  }
+  
+  .custom-dropdown select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px; /* Space for the icon */
+  }
+  
+  .custom-dropdown .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Ensure the icon doesn't interfere with clicking */
+  }
+  

@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-
+  
   employees: Employee[] = [];
+  employeeToDelete!: number;
+  isDeleteModalOpen: boolean = false;
 
-  constructor(private employeeService: EmployeeService,
-    private router: Router
-  ) { }
+  constructor(private employeeService: EmployeeService, private router: Router) {}
 
   ngOnInit(): void {
     this.getEmployees();
@@ -22,22 +22,33 @@ export class EmployeeListComponent implements OnInit {
 
   private getEmployees() {
     this.employeeService.getAllEmployees().subscribe(data => {
-      this.employees = data
+      this.employees = data;
     });
   }
 
   updateEmployee(id: number) {
-    return this.router.navigate(['update-employee', id]);
+    this.router.navigate(['update-employee', id]);
   }
 
-  deleteEmployee(id: number) {
-    this.employeeService.deleteEmployee(id).subscribe(data => {
-      console.log(data)
-      this.getEmployees();
-    });
+  employeeDetails(id: number) {
+    this.router.navigate(['employee-details', id]);
   }
 
-  employeeDetails(id: number){
-    return this.router.navigate(['employee-details', id]);
+  openDeleteModal(id: number) {
+    this.employeeToDelete = id;
+    this.isDeleteModalOpen = true;  // ✅ Show modal
+  }
+
+  closeDeleteModal() {
+    this.isDeleteModalOpen = false;  // ✅ Hide modal
+  }
+
+  confirmDelete() {
+    if (this.employeeToDelete !== null) {
+      this.employeeService.deleteEmployee(this.employeeToDelete).subscribe(() => {
+        this.getEmployees();
+        this.closeDeleteModal();
+      });
+    }
   }
 }

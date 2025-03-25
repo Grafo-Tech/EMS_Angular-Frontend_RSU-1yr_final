@@ -1,0 +1,8 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #5A92B3;
+  }
+  
+.navbar-nav .active {
+    color: #f5f7f8;
+  }

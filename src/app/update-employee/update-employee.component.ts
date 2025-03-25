@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-update-employee',
@@ -11,7 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateEmployeeComponent implements OnInit {
 
   
-  employee: Employee = new Employee();
+  employee: any = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    position: '',
+    gender: '',
+    selectedSkills: [] // Initialize selectedSkills as an empty array
+  };
+
+  positions = ['Manager', 'Developer','Analyst', 'Designer'];
+  genders = ['Male', 'Female'];
+  skills = ['Java', 'Angular', 'Python', 'React'];
+
   id: number = 0;
   errorMessage: string = '';
 
@@ -41,5 +54,8 @@ export class UpdateEmployeeComponent implements OnInit {
   
   goToEmployeeList() {
     this.router.navigate(['/employees']);
+  }
+  clearForm(form: NgForm) {
+      form.resetForm();
   }
 }

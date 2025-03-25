@@ -1,14 +1,63 @@
 <div class="col-md-6 offset-md-3">
-    <h2>Employee Details</h2>
-    <div class="container-fluid">
-        <div>
-            <label><b>Employee ID: </b>{{ employee.id }}</label>
+    <div class="card">
+        <div class="card-header text-center">
+            <h2>Employee Details</h2>
         </div>
-        <div>
-            <label><b>First Name: </b>{{ employee.firstName }}</label>
-        </div>
-        <div>
-            <label><b>Last Name: </b>{{ employee.lastName }}</label>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label><b>Employee ID: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ employee.id }}</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label><b>First Name: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ employee.firstName }}</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label><b>Last Name: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ employee.lastName }}</p>
+                </div>
+            </div>
+
+            <!-- You can add other employee details similarly -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label><b>Email: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ employee.email }}</p>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label><b>Gender: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ employee.gender }}</p>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label><b>Position: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p>{{ employee.position }}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
