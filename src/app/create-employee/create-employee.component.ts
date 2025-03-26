@@ -17,28 +17,53 @@ export class CreateEmployeeComponent implements OnInit {
     email: '',
     position: '',
     gender: '',
-    selectedSkills: [] // Initialize selectedSkills as an empty array
+    skills: [] as string[]// Initialize selectedSkills as an empty array
   };
 
   positions = ['Manager', 'Developer','Analyst', 'Designer'];
   genders = ['Male', 'Female'];
   skills = ['Java', 'Angular', 'Python', 'React'];
 
+  showToast: boolean = false;
+  successMessage: string = '';
+
   constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
-    this.employee.selectedSkills = new Array(this.skills.length).fill(false);
+    
    }
 
-  onSubmit(form: NgForm) {
+   onSubmit(form: NgForm): void {
     if (form.valid) {
       this.employeeService.createEmployee(this.employee).subscribe(() => {
-        this.router.navigate(['/employees']); // Redirect after save
+        this.successMessage = 'Employee Saved successfully!';
+        this.showToast = true;
+        
+        form.resetForm();
+        this.employee.skills = [];
+
+        setTimeout(() => {
+          this.hideToast();
+          this.router.navigate(['/employees']);
+        }, 3000);
       });
+    }
+  }
+
+  hideToast(): void {
+    this.showToast = false;
+  }
+
+  onSkillChange(event: any, skill: string) {
+    if (event.target.checked) {
+      this.employee.skills.push(skill);
+    } else {
+      this.employee.skills = this.employee.skills.filter((s: string) => s !== skill);
     }
   }
 
   clearForm(form: NgForm) {
     form.resetForm();
+    this.employee.skills = [];
   }
 }

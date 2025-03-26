@@ -18,7 +18,7 @@ export class UpdateEmployeeComponent implements OnInit {
     email: '',
     position: '',
     gender: '',
-    selectedSkills: [] // Initialize selectedSkills as an empty array
+    skills: [] as string[] // Initialize selectedSkills as an empty array
   };
 
   positions = ['Manager', 'Developer','Analyst', 'Designer'];
@@ -27,6 +27,9 @@ export class UpdateEmployeeComponent implements OnInit {
 
   id: number = 0;
   errorMessage: string = '';
+
+  showToast: boolean = false;
+  successMessage: string = '';
 
   constructor(private employeeService: EmployeeService,
      private route: ActivatedRoute,
@@ -43,19 +46,37 @@ export class UpdateEmployeeComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    this.employeeService.updateEmployee(this.id, this.employee)
-    .subscribe(data => {
-      this.goToEmployeeList();
-    },
-      error => console.log(error)
-    );
+  onSubmit(form: NgForm): void {
+    if (form.valid) {
+      this.employeeService.createEmployee(this.employee).subscribe(() => {
+        this.successMessage = 'Employee Updated successfully!';
+        this.showToast = true;
+        
+        form.resetForm();
+        this.employee.skills = [];
+
+        setTimeout(() => {
+          this.hideToast();
+          this.router.navigate(['/employees']);
+        }, 3000);
+      });
+    }
   } 
-  
-  goToEmployeeList() {
-    this.router.navigate(['/employees']);
+
+  hideToast(): void {
+    this.showToast = false;
   }
+
+  onSkillChange(event: any, skill: string) {
+    if (event.target.checked) {
+      this.employee.skills.push(skill); // Add skill when checked
+    } else {
+      this.employee.skills = this.employee.skills.filter((s: string) => s !== skill); // Remove skill when unchecked
+    }
+  }
+  
   clearForm(form: NgForm) {
       form.resetForm();
+      this.employee.skills = [];
   }
 }

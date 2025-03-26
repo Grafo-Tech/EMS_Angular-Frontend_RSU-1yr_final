@@ -1,62 +1,85 @@
-<div class="col-md-6 offset-md-3">
-    <div class="card">
-        <div class="card-header text-center">
-            <h2>Employee Details</h2>
+<div class="col-md-8 offset-md-2">
+    <div class="card shadow p-4">
+        <div class="card-header text-center bg-primary text-white rounded-top">
+            <h2 class="mb-0">Employee Details</h2>
         </div>
+
         <div class="card-body">
+            <!-- Employee ID -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label><b>Employee ID: </b></label>
                 </div>
                 <div class="col-md-8">
-                    <p>{{ employee.id }}</p>
+                    <p class="text-muted">{{ employee.id }}</p>
                 </div>
             </div>
 
+            <!-- First Name -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label><b>First Name: </b></label>
                 </div>
                 <div class="col-md-8">
-                    <p>{{ employee.firstName }}</p>
+                    <p class="text-muted">{{ employee.firstName }}</p>
                 </div>
             </div>
 
+            <!-- Last Name -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label><b>Last Name: </b></label>
                 </div>
                 <div class="col-md-8">
-                    <p>{{ employee.lastName }}</p>
+                    <p class="text-muted">{{ employee.lastName }}</p>
                 </div>
             </div>
 
-            <!-- You can add other employee details similarly -->
+            <!-- Email -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label><b>Email: </b></label>
                 </div>
                 <div class="col-md-8">
-                    <p>{{ employee.email }}</p>
+                    <p class="text-muted">{{ employee.email }}</p>
                 </div>
             </div>
-            
+
+            <!-- Gender -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label><b>Gender: </b></label>
                 </div>
                 <div class="col-md-8">
-                    <p>{{ employee.gender }}</p>
+                    <p class="text-muted">{{ employee.gender }}</p>
                 </div>
             </div>
 
+            <!-- Position -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label><b>Position: </b></label>
                 </div>
                 <div class="col-md-8">
-                    <p>{{ employee.position }}</p>
+                    <p class="text-muted">{{ employee.position }}</p>
                 </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="row mb-3" *ngIf="employee.skills && employee.skills.length">
+                <div class="col-md-4">
+                    <label><b>Skills: </b></label>
+                </div>
+                <div class="col-md-8">
+                    <p class="text-muted">{{ employee.skills.join(', ') }}</p>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary rounded-pill px-4" (click)="goBack()">
+                    <i class="fa fa-arrow-left"></i> Back to Employee List
+                </button>
             </div>
         </div>
     </div>

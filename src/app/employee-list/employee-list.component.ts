@@ -14,6 +14,9 @@ export class EmployeeListComponent implements OnInit {
   employeeToDelete!: number;
   isDeleteModalOpen: boolean = false;
 
+  searchQuery: string = ''; 
+  filteredEmployees: Employee[] = [];
+
   constructor(private employeeService: EmployeeService, private router: Router) {}
 
   ngOnInit(): void {
@@ -23,6 +26,7 @@ export class EmployeeListComponent implements OnInit {
   private getEmployees() {
     this.employeeService.getAllEmployees().subscribe(data => {
       this.employees = data;
+      this.filteredEmployees = [...data]; // Initialize filtered list with all employees
     });
   }
 
@@ -36,19 +40,30 @@ export class EmployeeListComponent implements OnInit {
 
   openDeleteModal(id: number) {
     this.employeeToDelete = id;
-    this.isDeleteModalOpen = true;  // ✅ Show modal
+    this.isDeleteModalOpen = true;
   }
 
   closeDeleteModal() {
-    this.isDeleteModalOpen = false;  // ✅ Hide modal
+    this.isDeleteModalOpen = false;
   }
 
   confirmDelete() {
-    if (this.employeeToDelete !== null) {
-      this.employeeService.deleteEmployee(this.employeeToDelete).subscribe(() => {
-        this.getEmployees();
-        this.closeDeleteModal();
-      });
-    }
+    this.employeeService.deleteEmployee(this.employeeToDelete).subscribe(() => {
+      this.getEmployees();  // Refresh list after deletion
+      this.closeDeleteModal();
+    });
+  }
+
+  filterEmployees() {
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredEmployees = this.employees.filter(employee =>
+      employee.firstName.toLowerCase().includes(query) ||
+      employee.lastName.toLowerCase().includes(query)
+    );
+ }
+
+  clearSearch() {
+    this.searchQuery = '';
+    this.filteredEmployees = [...this.employees];
   }
 }
