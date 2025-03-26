@@ -47,4 +47,21 @@
     justify-content: flex-end;
     gap: 10px;
   }
+
+  .custom-toast {
+    position: fixed;
+    top: 20px;          /* Adjust as needed */
+    right: 20px;        /* Adjust as needed */
+    background-color: #880404;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+  }
   
+  .custom-toast span {
+    flex-grow: 1;
+  }

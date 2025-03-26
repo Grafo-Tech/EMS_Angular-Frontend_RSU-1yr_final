@@ -24,8 +24,8 @@ export class CreateEmployeeComponent implements OnInit {
   genders = ['Male', 'Female'];
   skills = ['Java', 'Angular', 'Python', 'React'];
 
-  showToast: boolean = false;
-  successMessage: string = '';
+    showToast: boolean = false;
+    successMessage: string = '';
 
   constructor(private employeeService: EmployeeService, private router: Router) { }
 
@@ -38,10 +38,10 @@ export class CreateEmployeeComponent implements OnInit {
       this.employeeService.createEmployee(this.employee).subscribe(() => {
         this.successMessage = 'Employee Saved successfully!';
         this.showToast = true;
-        
+
         form.resetForm();
         this.employee.skills = [];
-
+        
         setTimeout(() => {
           this.hideToast();
           this.router.navigate(['/employees']);
