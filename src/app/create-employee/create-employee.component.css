@@ -1,7 +1,7 @@
 .custom-toast {
   position: fixed;
-  top: 20px;          /* Adjust as needed */
-  right: 20px;        /* Adjust as needed */
+  top: 20px;          
+  right: 20px;     
   background-color: #28a745;
   color: white;
   padding: 15px 20px;
@@ -10,6 +10,14 @@
   z-index: 1050;
   display: flex;
   align-items: center;
+}
+
+.success-toast {
+  background-color: #28a745;
+}
+
+.error-toast {
+  background-color: #dc3545;
 }
 
 .custom-toast span {

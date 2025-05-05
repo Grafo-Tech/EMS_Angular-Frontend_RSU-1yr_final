@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -17,41 +16,48 @@ export class CreateEmployeeComponent implements OnInit {
     email: '',
     position: '',
     gender: '',
-    skills: [] as string[]// Initialize selectedSkills as an empty array
+    skills: []
   };
 
   positions = ['Manager', 'Developer','Analyst', 'Designer'];
   genders = ['Male', 'Female'];
   skills = ['Java', 'Angular', 'Python', 'React'];
 
-    showToast: boolean = false;
-    successMessage: string = '';
+  showToast: boolean = false;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private employeeService: EmployeeService, private router: Router) { }
 
-  ngOnInit(): void {
-    
-   }
+  ngOnInit(): void {}
 
-   onSubmit(form: NgForm): void {
-    if (form.valid) {
-      this.employeeService.createEmployee(this.employee).subscribe(() => {
-        this.successMessage = 'Employee Saved successfully!';
-        this.showToast = true;
-
-        form.resetForm();
-        this.employee.skills = [];
-        
-        setTimeout(() => {
-          this.hideToast();
-          this.router.navigate(['/employees']);
-        }, 3000);
-      });
+  onSubmit(form: NgForm): void {
+    if (form.invalid) {
+      this.errorMessage = 'Please fill all required fields (expect skills).';
+      this.showToast = true;
+      setTimeout(() => this.hideToast(), 3000);
+      return;
     }
+
+    this.employeeService.createEmployee(this.employee).subscribe(() => {
+      this.successMessage = 'Employee Saved successfully!';
+      this.errorMessage = '';
+      this.showToast = true;
+
+      form.resetForm();
+      this.employee.skills = [];
+
+      setTimeout(() => {
+        this.hideToast();
+        this.router.navigate(['/employees']);
+      }, 3000);
+    });
   }
 
   hideToast(): void {
     this.showToast = false;
+    this.successMessage = '';
+    this.errorMessage = '';
   }
 
   onSkillChange(event: any, skill: string) {

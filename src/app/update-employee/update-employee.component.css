@@ -11,6 +11,14 @@
     display: flex;
     align-items: center;
   }
+
+  .success-toast {
+    background-color: #28a745;
+  }
+  
+  .error-toast {
+    background-color: #dc3545;
+  }
   
   .custom-toast span {
     flex-grow: 1;

@@ -1,6 +1,6 @@
-<div class="card shadow p-4">
+<div class="card shadow p-3">
     <!-- Form Header -->
-    <h2 class="text-center text-primary mb-4">Update Employee</h2>
+    <h2 class="text-center text-primary mb-4">Add Employee</h2>
 
     <!-- Employee Form -->
     <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
@@ -72,8 +72,8 @@
     </form>
 </div>
 
-<!-- Success Toast -->
-<div *ngIf="showToast" class="custom-toast">
-    <span>{{ successMessage }}</span>
+<!-- Toast Message -->
+<div *ngIf="showToast" class="custom-toast" [ngClass]="{'error-toast': errorMessage, 'success-toast': successMessage}">
+    <span>{{ errorMessage || successMessage }}</span>
     <button class="close-btn" (click)="hideToast()">×</button>
 </div>

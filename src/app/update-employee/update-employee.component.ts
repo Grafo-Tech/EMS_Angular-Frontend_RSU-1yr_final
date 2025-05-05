@@ -47,21 +47,29 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    if (form.valid) {
-      this.employeeService.createEmployee(this.employee).subscribe(() => {
-        this.successMessage = 'Employee Updated successfully!';
-        this.showToast = true;
-        
-        form.resetForm();
-        this.employee.skills = [];
-
-        setTimeout(() => {
-          this.hideToast();
-          this.router.navigate(['/employees']);
-        }, 3000);
-      });
+    if (form.invalid) {
+      this.errorMessage = 'Please fill out all required fields (expect skills).';
+      this.successMessage = '';
+      this.showToast = true;
+      setTimeout(() => this.hideToast(), 3000);
+      return;
     }
-  } 
+  
+    this.employeeService.createEmployee(this.employee).subscribe(() => {
+      this.successMessage = 'Employee Updated successfully!';
+      this.errorMessage = '';
+      this.showToast = true;
+  
+      form.resetForm();
+      this.employee.skills = [];
+  
+      setTimeout(() => {
+        this.hideToast();
+        this.router.navigate(['/employees']);
+      }, 3000);
+    });
+  }
+  
 
   hideToast(): void {
     this.showToast = false;

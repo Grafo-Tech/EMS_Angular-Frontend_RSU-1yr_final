@@ -1,30 +1,35 @@
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <i class="fa fa-briefcase"></i> Employee Management
-    </a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/employees" routerLinkActive="active">
-            <i class="fa fa-users"></i> Employee List
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="create-employee" routerLinkActive="active">
-            <i class="fa fa-plus-circle"></i> Add Employee
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<div class="background">
 
-<footer class="footer" style="background-color: #5A92B3;">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <i class="fa fa-briefcase"></i> Employee Management
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employees" routerLinkActive="active">
+              <i class="fa fa-users"></i> Employee List
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="create-employee" routerLinkActive="active">
+              <i class="fa fa-plus-circle"></i> Add Employee
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
-    <a>All Right Reversed &copy; {{ currentYear }}</a>
+    <router-outlet></router-outlet>
   </div>
-</footer>
+  
+  <footer class="footer" style="background-color: rgb(41, 158, 225);">
+    <div class="container">
+      <a>(JPF)All Rights Reversed &copy; {{ currentYear }}</a>
+    </div>
+  </footer>
+
+</div>

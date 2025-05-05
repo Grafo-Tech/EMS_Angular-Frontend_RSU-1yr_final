@@ -72,8 +72,8 @@
     </form>
 </div>
 
-<!-- Success Toast -->
-<div *ngIf="showToast" class="custom-toast">
-    <span>{{ successMessage }}</span>
+<!-- Toast Message -->
+<div *ngIf="showToast" class="custom-toast" [ngClass]="{'error-toast': errorMessage, 'success-toast': successMessage}">
+    <span>{{ errorMessage || successMessage }}</span>
     <button class="close-btn" (click)="hideToast()">×</button>
 </div>
